@@ -1,13 +1,14 @@
 package com.devianna.zgtodo;
 
+import com.devianna.zgtodo.control.TaskController;
 import com.devianna.zgtodo.models.Priority;
 import com.devianna.zgtodo.models.Status;
-import com.devianna.zgtodo.models.Task;
+import com.devianna.zgtodo.view.TaskListView;
 
 public class Application {
     public static void main(String[] args) {
-        Task t = new Task(
-                1,
+        TaskController controller = new TaskController();
+        controller.createTask(
                 "Tarefa Modelo",
                 "Esta é apenas uma tarefa modelo",
                 Priority.NORMAL,
@@ -16,9 +17,27 @@ public class Application {
                 null
         );
 
-        System.out.println(t);
-        System.out.println("Descrição da tarefa: " + t.getDescription());
-        System.out.println("Status: " + t.getStatus().getText());
-        System.out.println("Prioridade: " + t.getPriority().getText());
+        controller.createTask(
+                "Tarefa Modelo 2",
+                "Esta é apenas outra tarefa modelo",
+                Priority.HIGH,
+                "Doideira",
+                Status.DOING,
+                null
+        );
+
+        controller.deleteTask(2);
+
+        controller.createTask(
+                "Tarefa Modelo 3",
+                "Esta é apenas outra tarefa modelo",
+                Priority.HIGH,
+                "Doideira",
+                Status.DOING,
+                null
+        );
+
+        TaskListView listView = new TaskListView(controller);
+        listView.showAllTasks();
     }
 }
