@@ -26,7 +26,7 @@ public class Application {
                 null
         );
 
-        controller.deleteTask(2);
+        //controller.deleteTask(2);
 
         controller.createTask(
                 "Tarefa Modelo 3",
@@ -39,5 +39,7 @@ public class Application {
 
         TaskListView listView = new TaskListView(controller);
         listView.showAllTasks();
+        System.out.println();
+        listView.showAllTasksFiltered(Priority.HIGH);
     }
 }
