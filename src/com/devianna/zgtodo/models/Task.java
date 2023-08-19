@@ -1,6 +1,10 @@
 package com.devianna.zgtodo.models;
 
+import com.devianna.zgtodo.consts.StringConstants;
+
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Objects;
 
 public class Task {
@@ -82,11 +86,21 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
+        String taskName = StringConstants.BOLD + name + StringConstants.RESET_FORMAT;
+        String taskDescription = StringConstants.ITALIC + description + StringConstants.RESET_FORMAT;
+        String taskCategory = "|" + category + "|";
+        String taskPriority = priority.getColor() + " " + priority.getText() + " " + StringConstants.RESET_FORMAT;
+        String taskLimit = "";
+
+        if (limitDate != null) {
+            taskLimit = "Data Limite: " + StringConstants.UNDERLINE + limitDate + StringConstants.RESET_FORMAT;
+            if (limitDate.isEqual(LocalDate.now())) {
+                taskLimit = StringConstants.RED_FONT + taskLimit;
+            }
+        }
+
+        return String.format(
+                "%s\t%s\tPrioridade: %s\t%s\n %s\n", taskName, taskCategory, taskPriority, taskLimit, taskDescription);
     }
 
     @Override
