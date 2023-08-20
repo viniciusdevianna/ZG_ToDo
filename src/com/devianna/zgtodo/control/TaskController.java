@@ -25,7 +25,7 @@ public class TaskController {
             System.out.println("Não foi possível acessar o banco de dados");
         }
 
-        lastId = listOfTasks.isEmpty() ? 1 : listOfTasks.get(listOfTasks.size() - 1).getId();
+        lastId = listOfTasks.isEmpty() ? 1 : listOfTasks.get(listOfTasks.size() - 1).getId() + 1;
     }
 
 

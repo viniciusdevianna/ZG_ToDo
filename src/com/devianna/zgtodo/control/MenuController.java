@@ -78,6 +78,9 @@ public class MenuController {
             menuView.drawOrderByMenu();
             orderOption = scanner.nextInt();
             switch (orderOption) {
+                case 0:
+                    startAllTasksMenu(OrderBy.DEFAULT, null);
+                    break;
                 case 1:
                     startAllTasksMenu(OrderBy.PRIORITY, null);
                     break;
@@ -88,9 +91,6 @@ public class MenuController {
                     startAllTasksMenu(OrderBy.STATUS, null);
                     break;
                 case 4:
-                    startAllTasksMenu(OrderBy.DEFAULT, null);
-                    break;
-                case 5:
                     System.out.println("Voltando para o menu principal...");
                     break;
                 default:

@@ -26,11 +26,11 @@ public class MenuView {
     public void drawOrderByMenu() {
         System.out.println("Deseja ordenar a lista de tarefas?");
         System.out.println(" -------------------------------------------- ");
+        System.out.println("| 0 - Ordenação Padrão                      |");
         System.out.println("| 1 - Por prioridade                        |");
         System.out.println("| 2 - Por categoria                         |");
         System.out.println("| 3 - Por status                            |");
-        System.out.println("| 4 - Ordenação Padrão                      |");
-        System.out.println("| 5 - Voltar para o menu principal          |");
+        System.out.println("| 4 - Voltar para o menu principal          |");
         System.out.println(" -------------------------------------------- ");
 
         System.out.print(":");

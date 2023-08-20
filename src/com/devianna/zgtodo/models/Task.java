@@ -5,6 +5,7 @@ import com.devianna.zgtodo.consts.StringConstants;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Task {
@@ -26,6 +27,17 @@ public class Task {
         this.status = status;
         this.createdAt = createdAt;
         this.limitDate = limitDate;
+    }
+    
+    public Task(HashMap<String, String> attributes) {
+        this.id = Integer.parseInt(attributes.get("id"));
+        this.name = attributes.get("name");
+        this.description = attributes.get("description");
+        this.priority = Priority.findByNumber(Integer.parseInt(attributes.get("priority")));
+        this.category = attributes.get("category");
+        this.status = Status.valueOf(attributes.get("status"));
+        this.limitDate = attributes.get("limitDate").isEmpty() ? null : LocalDate.parse(attributes.get("limitDate"));
+        this.createdAt = LocalDate.parse(attributes.get("createdAt"));
     }
 
     public LocalDate getCreatedAt() {
@@ -112,6 +124,20 @@ public class Task {
                 "> %s - %s\t%s\tPrioridade: %s\t%s\n %s\nStatus: %s\n",
                 taskId, taskName, taskCategory, taskPriority, taskLimit, taskDescription, status.getText());
 
+    }
+    
+    public String toCSV() {
+        String[] attributes = new String[8];
+        attributes[0] = String.valueOf(getId());
+        attributes[1] = getName();
+        attributes[2] = getDescription();
+        attributes[3] = String.valueOf(getPriority().getNumber());
+        attributes[4] = getCategory();
+        attributes[5] = getStatus().toString();
+        attributes[6] = getLimitDate() != null ? getLimitDate().toString() : "";
+        attributes[7] = getCreatedAt().toString();
+
+        return String.join(";", attributes);
     }
 
     @Override
