@@ -82,10 +82,24 @@ public class MenuView {
     public void drawTaskListMenu() {
         System.out.println("O que você deseja fazer?");
         System.out.println(" -------------------------------------------- ");
-        System.out.println("| 1 - Completar tarefa                      |");
+        System.out.println("| 1 - Avançar status                        |");
         System.out.println("| 2 - Deletar tarefa                        |");
         System.out.println("| 3 - Atualizar tarefa                      |");
         System.out.println("| 4 - Voltar                                |");
+        System.out.println(" -------------------------------------------- ");
+
+        System.out.print(":");
+    }
+
+    public void drawUpdateMenu() {
+        System.out.println("O que você deseja atualizar?");
+        System.out.println(" -------------------------------------------- ");
+        System.out.println("| 1 - Nome                                  |");
+        System.out.println("| 2 - Descrição                             |");
+        System.out.println("| 3 - Categoria                             |");
+        System.out.println("| 4 - Prioridade                            |");
+        System.out.println("| 5 - Data Limite                           |");
+        System.out.println("| 6 - Voltar                                |");
         System.out.println(" -------------------------------------------- ");
 
         System.out.print(":");

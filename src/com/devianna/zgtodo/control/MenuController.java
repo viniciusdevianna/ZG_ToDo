@@ -7,6 +7,7 @@ import com.devianna.zgtodo.models.Status;
 import com.devianna.zgtodo.view.MenuView;
 import com.devianna.zgtodo.view.TaskListView;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuController {
@@ -148,18 +149,35 @@ public class MenuController {
 
     private <T> void startAllTasksMenu(OrderBy orderBy, T filterBy) {
         int menuOption = 0;
-        int taskOption = 0;
+        int taskOption;
         taskListView.showAllTasks(orderBy, filterBy);
         while (menuOption != 4) {
             menuView.drawTaskListMenu();
             menuOption = scanner.nextInt();
             switch (menuOption) {
                 case 1:
-                    System.out.println("Qual o número da tarefa que você deseja completar?");
+                    System.out.println("Qual o número da tarefa que você deseja avançar?");
                     taskOption = scanner.nextInt();
                     try {
-                        taskController.getTask(taskOption).setStatus(Status.DONE);
-                        System.out.println("Tarefa completa!");
+                        Status currentStatus = taskController.getTask(taskOption).getStatus();
+                        if (currentStatus.equals(Status.TODO)) {
+                            taskController.getTask(taskOption).setStatus(Status.DOING);
+                            System.out.printf("Tarefa %d agora está em execução\n", taskOption);
+                        } else if (currentStatus.equals(Status.DOING)) {
+                            taskController.getTask(taskOption).setStatus(Status.DONE);
+                            System.out.println("Tarefa finalizada!");
+                        } else {
+                            scanner.nextLine();
+                            System.out.println("Esta tarefa já está finalizada! Deseja reverter? (S/N)");
+                            String answer = scanner.nextLine().toUpperCase();
+                            if (answer.equals("S")) {
+                                taskController.getTask(taskOption).setStatus(Status.TODO);
+                                System.out.println("Status revertido");
+                            } else if (!answer.equals("N")) {
+                                System.out.println(StringConstants.INVALID_MENU_OPTION);
+                            }
+                        }
+
                         taskListView.showAllTasks(orderBy, filterBy);
                     } catch (NullPointerException e) {
                         System.out.println("Esta tarefa não foi encontrada");
@@ -177,7 +195,9 @@ public class MenuController {
                     }
                     break;
                 case 3:
-                    System.out.println(StringConstants.OPTION_UNAVAILABLE);
+                    System.out.println("Qual o número da tarefa que você deseja atualizar?");
+                    taskOption = scanner.nextInt();
+                    startUpdateTaskMenu(taskOption);
                     break;
                 case 4:
                     System.out.println("Voltando...");
@@ -186,6 +206,49 @@ public class MenuController {
                     System.out.println(StringConstants.INVALID_MENU_OPTION);
             }
         }
+    }
+
+    public void startUpdateTaskMenu(int taskId) {
+        int fieldOption = 0;
+        String newValue;
+        while (fieldOption != 6) {
+            menuView.drawUpdateMenu();
+            fieldOption = scanner.nextInt();
+            scanner.nextLine();
+            switch (fieldOption) {
+                case 1:
+                    System.out.println("Qual será o novo nome?");
+                    newValue = scanner.nextLine();
+                    taskController.getTask(taskId).setName(newValue);
+                    break;
+                case 2:
+                    System.out.println("Qual será a nova descrição?");
+                    newValue = scanner.nextLine();
+                    taskController.getTask(taskId).setDescription(newValue);
+                    break;
+                case 3:
+                    System.out.println("Qual será a nova categoria?");
+                    newValue = scanner.nextLine();
+                    taskController.getTask(taskId).setDescription(newValue);
+                    break;
+                case 4:
+                    System.out.println("De 1 a 5, qual será a nova prioridade?");
+                    newValue = scanner.nextLine();
+                    taskController.getTask(taskId).setPriority(Priority.findByNumber(Integer.parseInt(newValue)));
+                    break;
+                case 5:
+                    System.out.println("No modelo YYYY-MM-DD, qual será a data limite?");
+                    newValue = scanner.nextLine();
+                    taskController.getTask(taskId).setLimitDate(LocalDate.parse(newValue));
+                    break;
+                case 6:
+                    System.out.println("Voltando...");
+                    break;
+                default:
+                    System.out.println(StringConstants.INVALID_MENU_OPTION);
+            }
+        }
+
     }
 
 }
