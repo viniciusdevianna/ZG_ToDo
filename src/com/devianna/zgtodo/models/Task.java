@@ -86,6 +86,7 @@ public class Task {
 
     @Override
     public String toString() {
+        String taskId = StringConstants.BOLD + StringConstants.UNDERLINE + id + StringConstants.RESET_FORMAT;
         String taskName = StringConstants.BOLD + name + StringConstants.RESET_FORMAT;
         String taskDescription = StringConstants.ITALIC + description + StringConstants.RESET_FORMAT;
         String taskCategory = "|" + category + "|";
@@ -99,8 +100,18 @@ public class Task {
             }
         }
 
+        if (status.equals(Status.DONE)) {
+            taskName = StringConstants.STROKE + taskName;
+            taskDescription = StringConstants.STROKE + taskDescription;
+            taskCategory = StringConstants.STROKE + taskCategory;
+            taskPriority = StringConstants.STROKE + taskPriority;
+            taskLimit = StringConstants.STROKE + taskLimit;
+        }
+
         return String.format(
-                "%s\t%s\tPrioridade: %s\t%s\n %s\n", taskName, taskCategory, taskPriority, taskLimit, taskDescription);
+                "> %s - %s\t%s\tPrioridade: %s\t%s\n %s\nStatus: %s\n",
+                taskId, taskName, taskCategory, taskPriority, taskLimit, taskDescription, status.getText());
+
     }
 
     @Override

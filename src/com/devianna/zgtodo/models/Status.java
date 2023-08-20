@@ -1,9 +1,9 @@
 package com.devianna.zgtodo.models;
 
 public enum Status {
-    TODO("Pendente"),
-    DOING("Fazendo"),
-    DONE("Feita");
+    TODO("PENDENTE"),
+    DOING("FAZENDO"),
+    DONE("FEITA");
 
     private final String text;
     Status(String text) {
