@@ -17,14 +17,14 @@ public class Task {
     private final LocalDate createdAt;
     private LocalDate limitDate;
 
-    public Task(int id, String name, String description, Priority priority, String category, Status status, LocalDate limitDate) {
+    public Task(int id, String name, String description, Priority priority, String category, Status status, LocalDate limitDate, LocalDate createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.category = category;
         this.status = status;
-        this.createdAt = LocalDate.now();
+        this.createdAt = createdAt;
         this.limitDate = limitDate;
     }
 

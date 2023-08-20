@@ -1,27 +1,44 @@
 package com.devianna.zgtodo.control;
 
+import com.devianna.zgtodo.data.TaskDAO;
 import com.devianna.zgtodo.models.Priority;
 import com.devianna.zgtodo.models.Status;
 import com.devianna.zgtodo.models.Task;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskController {
 
-    private final ArrayList<Task> listOfTasks;
+    private ArrayList<Task> listOfTasks;
+    private final TaskDAO taskDao;
     private int lastId;
 
     public TaskController() {
+        taskDao = new TaskDAO();
         listOfTasks = new ArrayList<Task>();
-        // Enquanto não temos persistência, esta condição é sempre verdadeira, mas depois isso vai mudar
-        lastId = listOfTasks.isEmpty() ? 1 : listOfTasks.get(listOfTasks.size() - 1).getId() + 1;
+        try {
+            listOfTasks = taskDao.read();
+        } catch (FileNotFoundException e) {
+            System.out.println("Não foi possível acessar o banco de dados");
+        }
+
+        lastId = listOfTasks.isEmpty() ? 1 : listOfTasks.get(listOfTasks.size() - 1).getId();
     }
 
 
     public void createTask(String name, String description, Priority priority, String category, Status status, LocalDate limitDate) {
         int id = lastId++;
-        Task newTask = new Task(id, name, description, priority, category, status, limitDate);
+        Task newTask = new Task(id, name, description, priority, category, status, limitDate, LocalDate.now());
+
+        try {
+            taskDao.save(newTask);
+        } catch (IOException e) {
+            System.out.println("Não foi possível acessar o banco de dados.\nSuas alterações não serão salvas.");
+        }
+
         listOfTasks.add(newTask);
     }
 
