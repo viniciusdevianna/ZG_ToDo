@@ -43,12 +43,14 @@ public class TaskController {
     }
 
     public void deleteTask(int taskId) {
-        for (Task t : listOfTasks) {
-            if (t.getId() == taskId) {
-                listOfTasks.remove(t);
-                break;
-            }
+        Task t = getTask(taskId);
+        try {
+            taskDao.delete(t);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Suas alterações não foram salvas");
         }
+        listOfTasks.remove(t);
     }
 
     public Task getTask(int taskId) {
@@ -56,6 +58,36 @@ public class TaskController {
             if (t.getId() == taskId) return t;
         }
         return null;
+    }
+
+    public void updateTask(int taskId, Task.TaskAttributes attribute, String newValue) {
+        Task t = getTask(taskId);
+        switch (attribute) {
+            case NAME:
+                t.setName(newValue);
+                break;
+            case DESCRIPTION:
+                t.setDescription(newValue);
+                break;
+            case PRIORITY:
+                t.setPriority(Priority.findByNumber(Integer.parseInt(newValue)));
+                break;
+            case CATEGORY:
+                t.setCategory(newValue);
+                break;
+            case LIMIT_DATE:
+                t.setLimitDate(LocalDate.parse(newValue));
+                break;
+            default:
+                System.out.println("Atributo inválido");
+        }
+
+        try {
+            taskDao.update(t);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Suas alterações não foram salvas");
+        }
     }
 
     public ArrayList<Task> allTasks() {

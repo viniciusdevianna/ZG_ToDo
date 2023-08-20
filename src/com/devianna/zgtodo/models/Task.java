@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Task {
+    public enum TaskAttributes {
+        NAME, DESCRIPTION, PRIORITY, CATEGORY, LIMIT_DATE
+    }
     private final int id;
     private String name;
     private String description;

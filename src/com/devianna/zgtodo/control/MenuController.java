@@ -4,6 +4,7 @@ import com.devianna.zgtodo.consts.StringConstants;
 import com.devianna.zgtodo.models.OrderBy;
 import com.devianna.zgtodo.models.Priority;
 import com.devianna.zgtodo.models.Status;
+import com.devianna.zgtodo.models.Task;
 import com.devianna.zgtodo.view.MenuView;
 import com.devianna.zgtodo.view.TaskListView;
 
@@ -75,7 +76,7 @@ public class MenuController {
     }
     private void startOrderByMenu() {
         int orderOption = 0;
-        while (orderOption != 5) {
+        while (orderOption != 4) {
             menuView.drawOrderByMenu();
             orderOption = scanner.nextInt();
             switch (orderOption) {
@@ -198,6 +199,7 @@ public class MenuController {
                     System.out.println("Qual o número da tarefa que você deseja atualizar?");
                     taskOption = scanner.nextInt();
                     startUpdateTaskMenu(taskOption);
+                    taskListView.showAllTasks(orderBy, filterBy);
                     break;
                 case 4:
                     System.out.println("Voltando...");
@@ -219,27 +221,27 @@ public class MenuController {
                 case 1:
                     System.out.println("Qual será o novo nome?");
                     newValue = scanner.nextLine();
-                    taskController.getTask(taskId).setName(newValue);
+                    taskController.updateTask(taskId, Task.TaskAttributes.NAME, newValue);
                     break;
                 case 2:
                     System.out.println("Qual será a nova descrição?");
                     newValue = scanner.nextLine();
-                    taskController.getTask(taskId).setDescription(newValue);
+                    taskController.updateTask(taskId, Task.TaskAttributes.DESCRIPTION, newValue);
                     break;
                 case 3:
                     System.out.println("Qual será a nova categoria?");
                     newValue = scanner.nextLine();
-                    taskController.getTask(taskId).setDescription(newValue);
+                    taskController.updateTask(taskId, Task.TaskAttributes.CATEGORY, newValue);
                     break;
                 case 4:
                     System.out.println("De 1 a 5, qual será a nova prioridade?");
                     newValue = scanner.nextLine();
-                    taskController.getTask(taskId).setPriority(Priority.findByNumber(Integer.parseInt(newValue)));
+                    taskController.updateTask(taskId, Task.TaskAttributes.PRIORITY, newValue);
                     break;
                 case 5:
                     System.out.println("No modelo YYYY-MM-DD, qual será a data limite?");
                     newValue = scanner.nextLine();
-                    taskController.getTask(taskId).setLimitDate(LocalDate.parse(newValue));
+                    taskController.updateTask(taskId, Task.TaskAttributes.LIMIT_DATE, newValue);
                     break;
                 case 6:
                     System.out.println("Voltando...");
@@ -248,7 +250,5 @@ public class MenuController {
                     System.out.println(StringConstants.INVALID_MENU_OPTION);
             }
         }
-
     }
-
 }

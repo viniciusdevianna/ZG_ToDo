@@ -58,4 +58,44 @@ public class TaskDAO {
         writer.append(newTask).append("\n");
         writer.close();
     }
+
+    public void delete(Task task) throws IOException{
+        Scanner reader = new Scanner(database);
+        File temp = new File("./src/com/devianna/zgtodo/data/tasksDB-temp.csv");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(temp, true));
+
+        while (reader.hasNext()) {
+            String line = reader.nextLine();
+            if (line.startsWith(String.valueOf(task.getId()))) continue;
+            writer.append(line).append("\n");
+        }
+
+        reader.close();
+        writer.close();
+        if (!temp.renameTo(database)) {
+            throw new IOException("Couldn't rename file");
+        }
+    }
+
+    public void update(Task task) throws IOException {
+        Scanner reader = new Scanner(database);
+        File temp = new File("./src/com/devianna/zgtodo/data/tasksDB-temp.csv");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(temp, true));
+
+        while (reader.hasNext()) {
+            String line = reader.nextLine();
+            if (line.startsWith(String.valueOf(task.getId()))) {
+                String updatedTask = task.toCSV();
+                writer.append(updatedTask).append("\n");
+                continue;
+            }
+            writer.append(line).append("\n");
+        }
+
+        reader.close();
+        writer.close();
+        if (!temp.renameTo(database)) {
+            throw new IOException("Couldn't rename file");
+        }
+    }
 }
