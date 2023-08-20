@@ -16,4 +16,12 @@ public final class StringConstants {
     public static final String VERY_LOW_PRIORITY = "\u001b[44m\u001b[30;1m";
     public static final String RED_FONT = "\u001b[31;1m";
 
+    // Título do programa
+    public static final String ZGTODO = "\u001b[42m\u001b[1m\u001b[30;1m ZGToDo \u001b[0m";
+
+    // Mensagens para o usuário
+    public static final String INVALID_MENU_OPTION =
+            "Opção inválida, por favor, utilize um dos números indicados no menu";
+    public static final String OPTION_UNAVAILABLE = "Opção indisponível no momento";
+
 }

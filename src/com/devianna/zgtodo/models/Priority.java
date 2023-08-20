@@ -26,4 +26,13 @@ public enum Priority {
         return text;
     }
     public String getColor() { return color; }
+
+    public static Priority findByNumber(int number) {
+        for (Priority p : values()) {
+            if (p.number == number) {
+                return p;
+            }
+        }
+        return null;
+    }
 }

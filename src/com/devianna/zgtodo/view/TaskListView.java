@@ -17,8 +17,8 @@ public class TaskListView {
 
     public void showAllTasks(OrderBy orderBy) {
         taskController.allTasks()
-                .stream().
-                sorted(new Comparator<Task>() {
+                .stream()
+                .sorted(new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
                 switch (orderBy) {
