@@ -79,16 +79,16 @@ public class MenuController {
             orderOption = scanner.nextInt();
             switch (orderOption) {
                 case 1:
-                    startAllTasksMenu(OrderBy.PRIORITY);
+                    startAllTasksMenu(OrderBy.PRIORITY, null);
                     break;
                 case 2:
-                    startAllTasksMenu(OrderBy.CATEGORY);
+                    startAllTasksMenu(OrderBy.CATEGORY, null);
                     break;
                 case 3:
-                    startAllTasksMenu(OrderBy.STATUS);
+                    startAllTasksMenu(OrderBy.STATUS, null);
                     break;
                 case 4:
-                    startAllTasksMenu(OrderBy.DEFAULT);
+                    startAllTasksMenu(OrderBy.DEFAULT, null);
                     break;
                 case 5:
                     System.out.println("Voltando para o menu principal...");
@@ -99,13 +99,57 @@ public class MenuController {
         }
     }
     private void startFilterMenu() {
-        // TODO: menu de filtragem
+        int filterOption = 0;
+        while (filterOption != 4) {
+            menuView.drawFilterByMenu();
+            filterOption = scanner.nextInt();
+            switch (filterOption) {
+                case 1:
+                    startFilterChoiceMenu(OrderBy.PRIORITY);
+                    break;
+                case 2:
+                    startFilterChoiceMenu(OrderBy.CATEGORY);
+                    break;
+                case 3:
+                    startFilterChoiceMenu(OrderBy.STATUS);
+                    break;
+                case 4:
+                    System.out.println("Voltando para o menu principal...");
+                    break;
+                default:
+                    System.out.println(StringConstants.INVALID_MENU_OPTION);
+            }
+        }
     }
 
-    private void startAllTasksMenu(OrderBy orderBy) {
+    private void startFilterChoiceMenu(OrderBy orderBy) {
+        menuView.drawFilterValueMenu(orderBy);
+        scanner.nextLine();
+        String valueFilterOption = scanner.nextLine();
+        switch (orderBy) {
+            case PRIORITY:
+                int priorityNumber = Integer.parseInt(valueFilterOption);
+                Priority priority = Priority.findByNumber(priorityNumber);
+                startAllTasksMenu(orderBy, priority);
+                break;
+            case STATUS:
+                int statusNumber = Integer.parseInt(valueFilterOption);
+                Status status = Status.findByNumber(statusNumber);
+                startAllTasksMenu(orderBy, status);
+                break;
+            case CATEGORY:
+                startAllTasksMenu(orderBy, valueFilterOption);
+                break;
+            default:
+                System.out.println(StringConstants.INVALID_MENU_OPTION);
+        }
+
+    }
+
+    private <T> void startAllTasksMenu(OrderBy orderBy, T filterBy) {
         int menuOption = 0;
         int taskOption = 0;
-        taskListView.showAllTasks(orderBy);
+        taskListView.showAllTasks(orderBy, filterBy);
         while (menuOption != 4) {
             menuView.drawTaskListMenu();
             menuOption = scanner.nextInt();
@@ -116,7 +160,7 @@ public class MenuController {
                     try {
                         taskController.getTask(taskOption).setStatus(Status.DONE);
                         System.out.println("Tarefa completa!");
-                        taskListView.showAllTasks((orderBy));
+                        taskListView.showAllTasks(orderBy, filterBy);
                     } catch (NullPointerException e) {
                         System.out.println("Esta tarefa não foi encontrada");
                     }
@@ -127,7 +171,7 @@ public class MenuController {
                     try {
                         taskController.deleteTask(taskOption);
                         System.out.println("Tarefa deletada!");
-                        taskListView.showAllTasks((orderBy));
+                        taskListView.showAllTasks(orderBy, filterBy);
                     } catch (NullPointerException e) {
                         System.out.println("Esta tarefa não foi encontrada");
                     }

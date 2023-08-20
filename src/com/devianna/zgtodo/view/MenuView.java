@@ -1,6 +1,7 @@
 package com.devianna.zgtodo.view;
 
 import com.devianna.zgtodo.consts.StringConstants;
+import com.devianna.zgtodo.models.OrderBy;
 
 public class MenuView {
     public void drawMainMenu() {
@@ -33,6 +34,49 @@ public class MenuView {
         System.out.println(" -------------------------------------------- ");
 
         System.out.print(":");
+    }
+
+    public void drawFilterByMenu() {
+        System.out.println("Filtrar a lista de tarefas por...");
+        System.out.println(" -------------------------------------------- ");
+        System.out.println("| 1 - Prioridade                            |");
+        System.out.println("| 2 - Categoria                             |");
+        System.out.println("| 3 - Status                                |");
+        System.out.println("| 4 - Voltar para o menu principal          |");
+        System.out.println(" -------------------------------------------- ");
+
+        System.out.print(":");
+    }
+
+    public void drawFilterValueMenu(OrderBy orderby) {
+        switch (orderby) {
+            case PRIORITY:
+                System.out.println("Qual a prioridade?");
+                System.out.println(" -------------------------------------------- ");
+                System.out.println("| 1 - Muito baixa                           |");
+                System.out.println("| 2 - Baixa                                 |");
+                System.out.println("| 3 - Normal                                |");
+                System.out.println("| 4 - Alta                                  |");
+                System.out.println("| 5 - Muito alta                            |");
+                System.out.println(" -------------------------------------------- ");
+                System.out.print(":");
+                break;
+            case CATEGORY:
+                System.out.println("Qual categoria?");
+                System.out.println(":");
+                break;
+            case STATUS:
+                System.out.println("Qual o status?");
+                System.out.println(" -------------------------------------------- ");
+                System.out.println("| 1 - Pendente                              |");
+                System.out.println("| 2 - Fazendo                               |");
+                System.out.println("| 3 - Feita                                 |");
+                System.out.println(" -------------------------------------------- ");
+                System.out.println(":");
+                break;
+            default:
+                System.out.println(StringConstants.INVALID_MENU_OPTION);
+        }
     }
 
     public void drawTaskListMenu() {

@@ -7,6 +7,7 @@ import com.devianna.zgtodo.models.Status;
 import com.devianna.zgtodo.models.Task;
 
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class TaskListView {
     private final TaskController taskController;
@@ -15,9 +16,10 @@ public class TaskListView {
         taskController = tc;
     }
 
-    public void showAllTasks(OrderBy orderBy) {
+    public <T> void showAllTasks(OrderBy orderBy, T filterBy) {
         taskController.allTasks()
                 .stream()
+                .filter(getFilter(filterBy))
                 .sorted(new Comparator<Task>() {
             @Override
             public int compare(Task t1, Task t2) {
@@ -36,13 +38,17 @@ public class TaskListView {
                 .forEach(System.out::println);
     }
 
-    public <T> void showAllTasksFiltered(T filterBy) {
+    private <T> Predicate<Task> getFilter(T filterBy) {
+        Predicate<Task> filter;
         if (filterBy instanceof Priority) {
-            taskController.allTasks().stream().filter(t -> t.getPriority().equals(filterBy)).forEach(System.out::println);
+            filter = (t) -> t.getPriority().equals(filterBy);
         } else if (filterBy instanceof Status) {
-            taskController.allTasks().stream().filter(t -> t.getStatus().equals(filterBy)).forEach(System.out::println);
+            filter = (t) -> t.getStatus().equals(filterBy);
         } else if (filterBy instanceof String) {
-            taskController.allTasks().stream().filter(t -> t.getCategory().equals(filterBy)).forEach(System.out::println);
+            filter = (t) -> t.getCategory().equals(filterBy);
+        } else {
+            filter = (t) -> true;
         }
+        return filter;
     }
 }
