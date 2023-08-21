@@ -28,7 +28,7 @@ O projeto foi desenvolvido na Intellij, mas deve ser possível buildar o projeto
 
 ### Arquivo .jar
 Para utilizar diretamente o programa você pode fazer o download do arquivo .jar neste link:
-![Link de download do arquivo .jar](https://drive.google.com/file/d/1P0jpkxE-oSyjiZcORr1HU2ZAf9smPj3h/view?usp=sharing)
+[Link de download do arquivo .jar](https://drive.google.com/file/d/1P0jpkxE-oSyjiZcORr1HU2ZAf9smPj3h/view?usp=sharing)
 **(v0.1.0)**
 
 ## :space_invader: Bug fixes
