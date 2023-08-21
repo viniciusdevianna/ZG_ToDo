@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ZgToDo:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ZgToDo_jar</output-path>
+    <root id="archive" name="ZgToDo.jar">
+      <element id="module-output" name="ZgToDo" />
+    </root>
+  </artifact>
+</component>

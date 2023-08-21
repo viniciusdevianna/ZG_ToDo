@@ -9,6 +9,7 @@ import com.devianna.zgtodo.view.MenuView;
 import com.devianna.zgtodo.view.TaskListView;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MenuController {
@@ -62,16 +63,23 @@ public class MenuController {
             newTaskPriorityNumber = scanner.nextInt();
         }
 
-
         System.out.println("Qual é a categoria da tarefa?");
         scanner.nextLine();
         String newTaskCategory = scanner.nextLine();
-        // TODO: data limite
+
+        System.out.println("No formato YYYY-MM-DD, qual é a data limite? Caso não tenha, deixe em branco.");
+        String limitDate = scanner.nextLine();
+        LocalDate newTaskLimitDate = null;
+        try {
+            newTaskLimitDate = LocalDate.parse(limitDate);
+        } catch (DateTimeParseException e) {
+            System.out.println("Não foi possível identificar a data");
+        }
 
         System.out.println("Criando tarefa...");
         Priority newTaskPriority = Priority.findByNumber(newTaskPriorityNumber);
         taskController.createTask(
-                newTaskName, newTaskDescription, newTaskPriority, newTaskCategory, Status.TODO, null
+                newTaskName, newTaskDescription, newTaskPriority, newTaskCategory, Status.TODO, newTaskLimitDate
         );
     }
     private void startOrderByMenu() {

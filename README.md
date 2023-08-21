@@ -14,11 +14,22 @@ onde o usuário pode criar e gerenciar suas tarefas de maneira simples e intuiti
 Com backend implementado em Java, o projeto visa a aplicação dos principais conhecimentos da linguagem e da programação orientada a objetos.
 
 ## :newspaper: O que está planejado?
-- Uma forma de criar, deletar, atualizar e acessar suas tarefas.
-- Filtrar a lista de tarefas por prioridade, categoria e status.
-- Programar uma data limite para a realização da sua tarefa.
+- Uma forma de criar, deletar, atualizar e acessar suas tarefas. :heavy_check_mark:
+- Filtrar a lista de tarefas por prioridade, categoria e status. :heavy_check_mark:
+- Programar uma data limite para a realização da sua tarefa. :heavy_check_mark:
 - Criar alarme para quando a data limite da tarefa estiver para vencer.
 - Sistema de Inbox e Projetos baseado no modelo GTD.
+
+## :gear: Como utilizar?
+
+### Intellij
+Para editar o código e buildar o projeto do zero, basta fazer um clone deste respositório.
+O projeto foi desenvolvido na Intellij, mas deve ser possível buildar o projeto em qualquer IDE.
+
+### Arquivo .jar
+Para utilizar diretamente o programa você pode fazer o download do arquivo .jar neste link:
+![Link de download do arquivo .jar](https://drive.google.com/file/d/1P0jpkxE-oSyjiZcORr1HU2ZAf9smPj3h/view?usp=sharing)
+**(v0.1.0)**
 
 ## :space_invader: Bug fixes
 
@@ -26,9 +37,8 @@ Com backend implementado em Java, o projeto visa a aplicação dos principais co
 
 ## :computer: Tecnologias e Frameworks utilizados
 
-### Backend
-- Java
-
+### Back-end
+- Java (v1.8)
 ***
 
 

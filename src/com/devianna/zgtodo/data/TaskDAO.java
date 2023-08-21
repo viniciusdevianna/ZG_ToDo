@@ -11,7 +11,7 @@ public class TaskDAO {
     private final File database;
 
     public TaskDAO() {
-        database = new File("./src/com/devianna/zgtodo/data/tasksDB.csv");
+        database = new File("tasksDB.csv");
         if (!database.exists()) {
             try {
                 if (database.createNewFile()) {
@@ -61,7 +61,7 @@ public class TaskDAO {
 
     public void delete(Task task) throws IOException{
         Scanner reader = new Scanner(database);
-        File temp = new File("./src/com/devianna/zgtodo/data/tasksDB-temp.csv");
+        File temp = new File("tasksDB-temp.csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(temp, true));
 
         while (reader.hasNext()) {
@@ -79,7 +79,7 @@ public class TaskDAO {
 
     public void update(Task task) throws IOException {
         Scanner reader = new Scanner(database);
-        File temp = new File("./src/com/devianna/zgtodo/data/tasksDB-temp.csv");
+        File temp = new File("tasksDB-temp.csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(temp, true));
 
         while (reader.hasNext()) {
