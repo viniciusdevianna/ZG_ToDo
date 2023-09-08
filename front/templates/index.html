@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZG ToDo</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <header>
+        <div class="main-navbar">
+            <div class="logo">
+                <h1 id="zg">ZG</h1>
+                <h1 id="app_name">ToDo</h1>
+            </div>
+            <div class="menu-navbar">
+                <a class="navbar-link" href="#">Home</a>
+                <a class="navbar-link" href="#">Filtrar</a>
+                <a class="navbar-link" href="#">Sobre</a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="main-wrapper">
+            <div class="new-task-wrapper">
+                <input type="text" name="new_task" id="newTaskName" placeholder="Nova tarefa...">
+                <button id="addTaskBtn">+</button>
+            </div>
+            <div class="task-list-wrapper">
+                <ol id="tasklist"></ol>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+    
+    <script src="../scripts/index.js"></script>
+</body>
+</html>
