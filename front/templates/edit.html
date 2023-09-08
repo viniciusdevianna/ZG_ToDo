@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZG ToDo</title>
+    <title>Edição de Tarefa</title>
     <link rel="stylesheet" href="../style/reset.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../style/style.css">
@@ -31,31 +31,32 @@
             </div>
         </div>
     </header>
-    
+
     <main>
         <div class="main-wrapper">
-            <div class="new-task-wrapper">
-                <input type="text" name="new_task" id="newTaskName" placeholder="Nova tarefa...">
-                <select name="priority_selector" id="prioritySelector" required autocomplete="off">
-                    <option value="" disabled selected>Prioridade</option>
+            <form action="">
+                <input type="text" class="edit-task-text" placeholder="Nome da tarefa" name="task_name">
+                <input type="text" class="edit-task-text" placeholder="Descrição da tarefa" name="task_description">
+                <input type="text" class="edit-task-text" placeholder="Categoria" name="task_category">
+                <select name="task_status" id="statusSelector" required>
+                    <option value="ToDo" selected></option>
+                    <option value="Doing"></option>
+                    <option value="Done"></option>
+                </select>
+                <select name="priority_selector" id="prioritySelector" required>
                     <option value="1">&#9675; Livre</option>
                     <option value="2">&#128994; Baixa</option>
                     <option value="3">&#128993; Normal</option>
                     <option value="4">&#128308; Alta</option>
                     <option value="5">&#10071;&#10071; Urgente</option>
                 </select>
-                <button id="addTaskBtn">+</button>
-            </div>
-            <div class="task-list-wrapper">
-                <ol id="tasklist"></ol>
-            </div>
+                <input type="date" class="edit-task-date" name="task_limit_date">
+                <input type="submit" value="Editar">
+            </form>
         </div>
     </main>
 
-    <footer>
-
-    </footer>
-    
     <script src="../scripts/index.js"></script>
+
 </body>
 </html>
