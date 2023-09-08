@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZG ToDo</title>
     <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
@@ -26,6 +27,14 @@
         <div class="main-wrapper">
             <div class="new-task-wrapper">
                 <input type="text" name="new_task" id="newTaskName" placeholder="Nova tarefa...">
+                <select name="priority_selector" id="prioritySelector" required autocomplete="off">
+                    <option value="" disabled selected>Prioridade</option>
+                    <option value="1">&#9675; Livre</option>
+                    <option value="2">&#128994; Baixa</option>
+                    <option value="3">&#128993; Normal</option>
+                    <option value="4">&#128308; Alta</option>
+                    <option value="5">&#10071;&#10071; Urgente</option>
+                </select>
                 <button id="addTaskBtn">+</button>
             </div>
             <div class="task-list-wrapper">
