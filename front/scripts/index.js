@@ -9,6 +9,33 @@ const priorities = {
     5: "&#10071;&#10071;"
 };
 
+function createTask(name, priority, description, category, status, limitdate, id = -1) {
+    let newTask = {
+        id: id === -1 ? tasks.length : id,
+        name: name,
+        priority: priority,
+        description: description,
+        category: category,
+        status: status,
+        limitDate: limitdate
+    };
+    tasks.push(newTask);
+}
+
+const query = new URLSearchParams(window.location.search);
+if (query.has("id")) {
+    tasks.filter((task) => task.id !== query.get("id"));
+    createTask(
+        query.get("task_name"),
+        query.get("priority_selector"),
+        query.get("task_description"),
+        query.get("task_category"),
+        query.get("task_status"),
+        query.get("task_limit_date"),
+        query.get("id"),
+    );
+}
+
 function updateTaskList() {
     const taskList = document.getElementById("tasklist");
 
@@ -32,7 +59,7 @@ function updateTaskList() {
                 <p>${task.description}</p>
                 <p>${task.limitDate || ""}</p>
             </div>`;
-        li.onclick = () => location.href = "./edit.html";
+        li.onclick = () => location.href = `./edit.html?id=${task.id}`;
         taskList.appendChild(li);
         document.getElementById(`deleteIcon${task.id}`).onclick = (event) => {
             event.stopPropagation();
@@ -50,16 +77,13 @@ const prioritySelector = document.getElementById("prioritySelector");
 
 addTaskBtn.onclick = () => {
     if (newTaskName.value) {
-        let newTask = {
-            id: tasks.length,
-            name: newTaskName.value,
-            priority: prioritySelector.value,
-            description: "",
-            category: "",
-            status: "ToDo",
-            limitDate: null
-        }
-        tasks.push(newTask);
+        createTask(
+            name = newTaskName.value,
+            priority = prioritySelector.value,
+            description = "",
+            category = "",
+            status = "ToDo",
+            limitDate = null);
         updateTaskList();
         newTaskName.value = "";
     }
