@@ -12,6 +12,7 @@ O ZGToDo é um aplicativo de lista de tarefas no estilo *TaskScheduler*,
 onde o usuário pode criar e gerenciar suas tarefas de maneira simples e intuitiva.
 
 Com backend implementado em Java, o projeto visa a aplicação dos principais conhecimentos da linguagem e da programação orientada a objetos.
+Na segunda parte do projeto, foi desenvolvido um frontend com HTML / CSS / Javascript, sem uso de framework.
 
 ## :newspaper: O que está planejado?
 - Uma forma de criar, deletar, atualizar e acessar suas tarefas. :heavy_check_mark:
@@ -31,14 +32,23 @@ Para utilizar diretamente o programa você pode fazer o download do arquivo .jar
 [Link de download do arquivo .jar](https://drive.google.com/file/d/1P0jpkxE-oSyjiZcORr1HU2ZAf9smPj3h/view?usp=sharing)
 **(v0.1.0)**
 
-## :space_invader: Bug fixes
+### Frontend
+A melhor forma de ver o frontend funcionando (sem se comunicar com o backend, por enquanto) é por meio da extensão de Live Server do VS Code.
+Acesse a home do site em `front/templates/index.html`.
 
-- Nada aqui por enquanto.
+## :space_invader: Bug reports
+
+- :construction: Os filtros da lista de tarefas ainda não foram implementados no frontend
 
 ## :computer: Tecnologias e Frameworks utilizados
 
 ### Back-end
 - Java (v1.8)
+
+### Front-end
+- HTML5
+- CSS3
+- Javascript
 ***
 
 
