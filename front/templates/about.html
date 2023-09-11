@@ -34,23 +34,15 @@
         </div>
     </header>
 
-    <main>
-        <div class="main-wrapper">
-            <div class="new-task-wrapper">
-                <input type="text" name="new_task" id="newTaskName" class=input-text placeholder="Nova tarefa...">
-                <select name="priority_selector" id="prioritySelector" class=priority-selector required
-                    autocomplete="off">
-                    <option value="" disabled selected>Prioridade</option>
-                    <option value="1">&#9675; Livre</option>
-                    <option value="2">&#128994; Baixa</option>
-                    <option value="3">&#128993; Normal</option>
-                    <option value="4">&#128308; Alta</option>
-                    <option value="5">&#10071;&#10071; Urgente</option>
-                </select>
-                <button id="addTaskBtn">+</button>
-            </div>
-            <div class="task-list-wrapper">
-                <ol id="tasklist"></ol>
+    <main class="main-wrapper">
+        <div class="task-list-wrapper">
+            <div id="about">
+                <p>O ZGToDo é um aplicativo de lista de tarefas no estilo <span class="highlight">TaskScheduler</span>,
+                    onde o usuário pode criar e gerenciar suas tarefas de maneira simples e intuitiva.</p>
+                <br>
+                <p>Com backend implementado em &#9749;<span class="highlight">Java</span> o projeto visa a aplicação dos
+                    principais conhecimentos da
+                    linguagem e da programação orientada a objetos.</p>
             </div>
         </div>
     </main>
@@ -58,8 +50,6 @@
     <footer>
 
     </footer>
-
-    <script src="../scripts/index.js"></script>
 </body>
 
 </html>

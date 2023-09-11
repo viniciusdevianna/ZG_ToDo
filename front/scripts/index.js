@@ -15,7 +15,7 @@ function updateTaskList() {
         let li = document.createElement("li");
         li.className = "task-card";
         li.id = "taskcard";
-        li.innerHTML = 
+        li.innerHTML =
             `<div class="card-title">
                 <div class="card-name">
                 <p>${task.name}</p>
@@ -42,7 +42,7 @@ addTaskBtn.onclick = () => {
             id: tasks.length,
             name: newTaskName.value,
             priority: prioritySelector.value,
-            description: "Descrição",
+            description: "",
             category: "",
             status: "ToDo",
             limitDate: null
@@ -50,7 +50,7 @@ addTaskBtn.onclick = () => {
         tasks.push(newTask);
         updateTaskList();
         newTaskName.value = "";
-    }   
+    }
 }
 
 updateTaskList();

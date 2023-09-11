@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../style/style.css">
 </head>
+
 <body>
     <header>
         <div class="main-navbar">
@@ -16,7 +18,7 @@
                 <h1 id="app_name">ToDo</h1>
             </div>
             <div class="menu-navbar">
-                <a class="navbar-link" href="#">
+                <a class="navbar-link" href="./index.html">
                     <span class="material-icons">home</span>
                     <span>Home</span>
                 </a>
@@ -24,7 +26,7 @@
                     <span class="material-icons">tune</span>
                     <span>Filtrar</span>
                 </a>
-                <a class="navbar-link" href="#">
+                <a class="navbar-link" href="./about.html">
                     <span class="material-icons">article</span>
                     <span>Sobre</span>
                 </a>
@@ -34,29 +36,30 @@
 
     <main>
         <div class="main-wrapper">
-            <form action="">
-                <input type="text" class="edit-task-text" placeholder="Nome da tarefa" name="task_name">
-                <input type="text" class="edit-task-text" placeholder="Descrição da tarefa" name="task_description">
-                <input type="text" class="edit-task-text" placeholder="Categoria" name="task_category">
-                <select name="task_status" id="statusSelector" required>
-                    <option value="ToDo" selected></option>
-                    <option value="Doing"></option>
-                    <option value="Done"></option>
+            <form action="" class="task-list-wrapper">
+                <input type="text" class="input-text" placeholder="Nome da tarefa" name="task_name">
+                <input type="text" class="input-text" placeholder="Descrição da tarefa" name="task_description">
+                <input type="text" class="input-text" placeholder="Categoria" name="task_category">
+                <select name="task_status" id="statusSelector" class="priority-selector" required>
+                    <option value="ToDo" selected>ToDo</option>
+                    <option value="Doing">Doing</option>
+                    <option value="Done">Done</option>
                 </select>
-                <select name="priority_selector" id="prioritySelector" required>
+                <select name="priority_selector" id="prioritySelector" class="priority-selector" required>
                     <option value="1">&#9675; Livre</option>
                     <option value="2">&#128994; Baixa</option>
                     <option value="3">&#128993; Normal</option>
                     <option value="4">&#128308; Alta</option>
                     <option value="5">&#10071;&#10071; Urgente</option>
                 </select>
-                <input type="date" class="edit-task-date" name="task_limit_date">
-                <input type="submit" value="Editar">
+                <input type="date" class="input-date" name="task_limit_date">
+                <input type="submit" value="Editar" class="custom-btn">
             </form>
         </div>
     </main>
 
-    <script src="../scripts/index.js"></script>
+    <script src="../scripts/edit.js"></script>
 
 </body>
+
 </html>
