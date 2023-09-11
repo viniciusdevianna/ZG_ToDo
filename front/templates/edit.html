@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de Tarefa</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="main-navbar">
+            <div class="logo">
+                <h1 id="zg">ZG</h1>
+                <h1 id="app_name">ToDo</h1>
+            </div>
+            <div class="menu-navbar">
+                <a class="navbar-link" href="./index.html">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a class="navbar-link" href="#">
+                    <span class="material-icons">tune</span>
+                    <span>Filtrar</span>
+                </a>
+                <a class="navbar-link" href="./about.html">
+                    <span class="material-icons">article</span>
+                    <span>Sobre</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-wrapper">
+            <form action="./index.html" class="task-list-wrapper" id="editTaskForm">
+                <input type="hidden" id="taskId" name="id">
+                <input type="text" class="input-text" placeholder="Nome da tarefa" name="task_name">
+                <input type="text" class="input-text" placeholder="Descrição da tarefa" name="task_description">
+                <input type="text" class="input-text" placeholder="Categoria" name="task_category">
+                <select name="task_status" id="statusSelector" class="priority-selector" required>
+                    <option value="ToDo" selected>ToDo</option>
+                    <option value="Doing">Doing</option>
+                    <option value="Done">Done</option>
+                </select>
+                <select name="priority_selector" id="prioritySelector" class="priority-selector" required>
+                    <option value="1">&#9675; Livre</option>
+                    <option value="2">&#128994; Baixa</option>
+                    <option value="3">&#128993; Normal</option>
+                    <option value="4">&#128308; Alta</option>
+                    <option value="5">&#10071;&#10071; Urgente</option>
+                </select>
+                <input type="date" class="input-date" name="task_limit_date">
+                <input type="submit" value="Editar" class="custom-btn">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Desenvolvido por <span class="highlight">Vinícius Vianna</span> para o <span class="highlight">Acelera
+                ZG4</span></p>
+        <br>
+        <p>Brasil, 2023</p>
+    </footer>
+
+    <script src="../scripts/edit.js"></script>
+
+</body>
+
+</html>
