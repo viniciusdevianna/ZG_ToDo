@@ -1,6 +1,9 @@
 // TODO: refatorar este código para separar as funções
 
 let tasks = [];
+if (localStorage.getItem("tasks")) {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+}
 const priorities = {
     1: "&#9675;",
     2: "&#128994;",
@@ -24,16 +27,18 @@ function createTask(name, priority, description, category, status, limitdate, id
 
 const query = new URLSearchParams(window.location.search);
 if (query.has("id")) {
-    tasks.filter((task) => task.id !== query.get("id"));
-    createTask(
-        query.get("task_name"),
-        query.get("priority_selector"),
-        query.get("task_description"),
-        query.get("task_category"),
-        query.get("task_status"),
-        query.get("task_limit_date"),
-        query.get("id"),
-    );
+    for (let task of tasks) {
+        console.log(task.id);
+        console.log(query.get("id"))
+        if (task.id == query.get("id")) {
+            task.name = query.get("task_name");
+            task.priority = query.get("priority_selector");
+            task.description = query.get("task_description");
+            task.category = query.get("task_category");
+            task.status = query.get("task_status");
+            task.limitDate = query.get("task_limit_date");
+        }
+    }
 }
 
 function updateTaskList() {
@@ -59,7 +64,7 @@ function updateTaskList() {
                 <p>${task.description}</p>
                 <p>${task.limitDate || ""}</p>
             </div>`;
-        li.onclick = () => location.href = `./edit.html?id=${task.id}`;
+        li.onclick = () => location.href = `./edit.html?tarefa=${JSON.stringify(task)}`;
         taskList.appendChild(li);
         document.getElementById(`deleteIcon${task.id}`).onclick = (event) => {
             event.stopPropagation();
@@ -69,6 +74,7 @@ function updateTaskList() {
             }
         }
     });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 const addTaskBtn = document.getElementById("addTaskBtn");
