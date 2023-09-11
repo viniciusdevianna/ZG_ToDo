@@ -4,6 +4,7 @@ const task = JSON.parse(taskJson);
 
 const form = document.getElementById("editTaskForm");
 
+form["id"].value = task.id;
 form["task_name"].value = task.name;
 form["task_description"].value = task.description;
 form["task_category"].value = task.category;
