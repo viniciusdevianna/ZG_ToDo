@@ -6,12 +6,16 @@
     --box-background: rgba(200, 200, 200, 0.5);
 }
 
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
+footer {
+    height: 5rem;
+    width: auto;
+    background-color: var(--color-secondary);
+    font-weight: bold;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-navbar {
