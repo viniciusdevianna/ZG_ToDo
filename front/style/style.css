@@ -96,6 +96,7 @@
 .card-title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .card-name {
@@ -106,6 +107,7 @@
 
 .card-name p {
     margin: 0 1rem;
+    align-items: center;
 }
 
 .card-description {
